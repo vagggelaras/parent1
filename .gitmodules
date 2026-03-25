@@ -1,3 +1,3 @@
 [submodule "shared-submodule"]
 	path = shared-submodule
-	url = ../shared-submodule
+	url = https://github.com/vagggelaras/submodule.git
