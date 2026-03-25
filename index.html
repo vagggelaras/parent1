@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parent Repo 1</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #1a1a2e;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+    h1 { margin-bottom: 10px; font-size: 1.8rem; }
+    .subtitle { margin-bottom: 40px; opacity: 0.6; font-size: 0.9rem; }
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+    .square-wrapper { text-align: center; }
+    .square {
+      width: 200px;
+      height: 200px;
+      border-radius: 16px;
+      transition: transform 0.2s;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .square:hover { transform: scale(1.05); }
+    .label {
+      margin-top: 12px;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+    .color-value {
+      margin-top: 4px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Parent Repo 1</h1>
+  <p class="subtitle">Left = Parent color &nbsp;|&nbsp; Right = Submodule color</p>
+  <div class="container">
+    <div class="square-wrapper">
+      <div class="square" id="parentSquare"></div>
+      <div class="label">Parent Color</div>
+      <div class="color-value" id="parentColorText"></div>
+    </div>
+    <div class="square-wrapper">
+      <div class="square" id="submoduleSquare"></div>
+      <div class="label">Submodule Color</div>
+      <div class="color-value" id="submoduleColorText"></div>
+    </div>
+  </div>
+
+  <script>
+    // Parent-controlled color (LEFT square)
+    const PARENT_COLOR = "#3498db"; // blue
+
+    // Load submodule color (RIGHT square)
+    fetch("./shared-submodule/color.json")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("submoduleSquare").style.backgroundColor = data.color;
+        document.getElementById("submoduleColorText").textContent = data.color + " (" + data.name + ")";
+      });
+
+    document.getElementById("parentSquare").style.backgroundColor = PARENT_COLOR;
+    document.getElementById("parentColorText").textContent = PARENT_COLOR + " (blue)";
+  </script>
+</body>
+</html>
