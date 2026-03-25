@@ -60,20 +60,17 @@
     </div>
   </div>
 
+  <script src="./shared-submodule/color.js"></script>
   <script>
     // Parent-controlled color (LEFT square)
     const PARENT_COLOR = "#3498db"; // blue
 
-    // Load submodule color (RIGHT square)
-    fetch("./shared-submodule/color.json")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("submoduleSquare").style.backgroundColor = data.color;
-        document.getElementById("submoduleColorText").textContent = data.color + " (" + data.name + ")";
-      });
-
     document.getElementById("parentSquare").style.backgroundColor = PARENT_COLOR;
     document.getElementById("parentColorText").textContent = PARENT_COLOR + " (blue)";
+
+    // Submodule-controlled color (RIGHT square)
+    document.getElementById("submoduleSquare").style.backgroundColor = window.SUBMODULE_COLOR;
+    document.getElementById("submoduleColorText").textContent = window.SUBMODULE_COLOR + " (red)";
   </script>
 </body>
 </html>
